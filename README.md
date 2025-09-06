@@ -1,66 +1,53 @@
 
-# Install Java JDK 25 on macOS (directly from this link)
+# Install Java JDK 25 on macOS (using SDKMAN!)
 
-Download from: [OpenJDK 25 Early Access](https://jdk.java.net/25/)
-
----
-
-## Available Builds
-
-- **macOS AArch64 (M1/M2/M3 chips):**  
-  File: `openjdk-25_macos-aarch64_bin.tar.gz`  
-  Size: `215390344`  
-
-- **macOS x64 (Intel):**  
-  File: `openjdk-25_macos-x64_bin.tar.gz`  
-  Size: `217677049`  
+SDKMAN! makes it easy to install and switch between multiple JDK versions on macOS.
 
 ---
 
-## Installation Steps (for both AArch64 and x64) (dowload by terminal)
+## Installation Steps
 
-1. **Download the correct file for your architecture**  
-   Example (for Apple Silicon):
+1. **Install SDKMAN!** (if not already installed)
+
    ```bash
-   curl -O https://download.java.net/java/early_access/jdk25/36/GPL/openjdk-25_macos-aarch64_bin.tar.gz
+   curl -s "https://get.sdkman.io" | bash
+   source "$HOME/.sdkman/bin/sdkman-init.sh"
+   sdk version
    ```
 
-   Example (for Intel):
+2. **List available JDKs**
+
    ```bash
-   curl -O https://download.java.net/java/early_access/jdk25/36/GPL/openjdk-25_macos-x64_bin.tar.gz
+   sdk list java
    ```
 
-2. **Extract the downloaded file**
-   ```bash
-   tar -xzf openjdk-25_macos-*_bin.tar.gz
+   You will see something like:
+
+   ```
+   ...
+   |     | 25.ea.36     | open    |            | 25.ea.36-open
+   ...
    ```
 
-3. **Move it to the Java Virtual Machines directory**
+3. **Install JDK 25 (Early Access build)**
+
    ```bash
-   sudo mv jdk-25.jdk /Library/Java/JavaVirtualMachines/
+   sdk install java 25.ea.36-open
    ```
 
-4. **Configure environment variables**  
-   Open your `~/.zshrc` (or `~/.bashrc` if using bash) and add:
-   ```bash
-   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home
-   export PATH=$JAVA_HOME/bin:$PATH
-   ```
 
-5. **Reload shell configuration**
-   ```bash
-   source ~/.zshrc
-   ```
+4. **Verify installation**
 
-6. **Verify installation**
    ```bash
    java --version
    ```
 
    **Expected output:**
+
    ```
    openjdk 25 2025-09-16
-   OpenJDK Runtime Environment (build 25+36-3489)
-   OpenJDK 64-Bit Server VM (build 25+36-3489, mixed mode, sharing)
+   OpenJDK Runtime Environment (build 25-ea+36-...)
+   OpenJDK 64-Bit Server VM (build 25-ea+36-..., mixed mode, sharing)
    ```
-````
+
+
